@@ -4,97 +4,19 @@
 **DBMS Tool used:** Oracle SQL Developer
 **1.Business Scenario Summary**
 Sunrise Supermarket sells various products to customers who are registered to the system. Customers can place orders which have one or more items. Management wants to know who their customers are, what they buy and how the sales are trending over time. So we are going to create tables with 5 customers, 8 products across 3 categories, 15 orders and 25 order items across multiple dates.
+
 **2.Database Schema and Setup**
-Database Schema :This is where we will create tables where data will be placed.
+Database Schema :This is where we will create tables where data will be placed. Using the code given in the assignment document, we will insert it in our developer and it will generate the tables successfully.
 
-CREATE TABLE customers (
-  customer_id NUMBER PRIMARY KEY,
-  customer_name VARCHAR2(100),
-  email VARCHAR2(100),
-  city VARCHAR2(50)
-);
+Data Setup: This is where Data will be inserted including customer names, emails, cities; products' data, order dates and order items in general. The table data for query use is as below.
 
-CREATE TABLE products (
-  product_id NUMBER PRIMARY KEY,
-  product_name VARCHAR2(100),
-  category VARCHAR2(50),
-  price NUMBER(10,2)
-);
+Customers Table: <img width="368" height="135" alt="Customers Table" src="https://github.com/user-attachments/assets/76424acd-ca9a-4697-82f9-2b8e070d94a5" />
 
-CREATE TABLE orders (
-  order_id NUMBER PRIMARY KEY,
-  customer_id NUMBER REFERENCES customers(customer_id),
-  order_date DATE
-);
+Products Table: <img width="278" height="182" alt="Products Table" src="https://github.com/user-attachments/assets/782ff34b-b6db-4e8c-a4b7-78334293905f" />
 
-CREATE TABLE order_items (
-  order_item_id NUMBER PRIMARY KEY,
-  order_id NUMBER REFERENCES orders(order_id),
-  product_id NUMBER REFERENCES products(product_id),
-  quantity NUMBER
-);
-By inputting this syntax, the database will then create the tables above.
+Orders Table: <img width="243" height="288" alt="Orders Table" src="https://github.com/user-attachments/assets/9748515c-2c24-4e99-a8c2-7376a4094780" />
 
-Data Setup: This is where Data will be inputed including customer names,emails,cities;products'data,order dates and order items in general. 
-
-INSERT INTO customers VALUES (1, 'Alice Smith', 'alice@example.com', 'New York');
-INSERT INTO customers VALUES (2, 'Bob Jones', 'bob@example.com', 'Chicago');
-INSERT INTO customers VALUES (3, 'Charlie Brown', 'charlie@example.com', 'New York');
-INSERT INTO customers VALUES (4, 'Diana Prince', 'diana@example.com', 'Los Angeles');
-INSERT INTO customers VALUES (5, 'Evan Wright', 'evan@example.com', 'Chicago');
-
-INSERT INTO products VALUES (101, 'Milk', 'Dairy', 3.50);
-INSERT INTO products VALUES (102, 'Cheddar Cheese', 'Dairy', 5.00);
-INSERT INTO products VALUES (103, 'Yogurt', 'Dairy', 1.50);
-INSERT INTO products VALUES (104, 'Bread', 'Bakery', 2.50);
-INSERT INTO products VALUES (105, 'Croissant', 'Bakery', 3.00);
-INSERT INTO products VALUES (106, 'Apple', 'Produce', 0.80);
-INSERT INTO products VALUES (107, 'Banana', 'Produce', 0.50);
-INSERT INTO products VALUES (108, 'Orange', 'Produce', 0.90);
-
-INSERT INTO orders VALUES (10, 1, DATE '2026-09-01');
-INSERT INTO orders VALUES (11, 2, DATE '2026-09-01');
-INSERT INTO orders VALUES (12, 1, DATE '2026-09-03');
-INSERT INTO orders VALUES (13, 3, DATE '2026-09-04');
-INSERT INTO orders VALUES (14, 4, DATE '2026-09-05');
-INSERT INTO orders VALUES (15, 2, DATE '2026-09-06');
-INSERT INTO orders VALUES (16, 1, DATE '2026-09-07');
-INSERT INTO orders VALUES (17, 3, DATE '2026-09-08');
-INSERT INTO orders VALUES (18, 4, DATE '2026-09-09');
-INSERT INTO orders VALUES (19, 2, DATE '2026-09-10');
-INSERT INTO orders VALUES (20, 1, DATE '2026-09-11');
-INSERT INTO orders VALUES (21, 3, DATE '2026-09-12');
-INSERT INTO orders VALUES (22, 4, DATE '2026-09-13');
-INSERT INTO orders VALUES (23, 1, DATE '2026-09-14');
-INSERT INTO orders VALUES (24, 2, DATE '2026-09-15');
-
-INSERT INTO order_items VALUES (1, 10, 101, 2);
-INSERT INTO order_items VALUES (2, 10, 104, 1);
-INSERT INTO order_items VALUES (3, 11, 102, 3);
-INSERT INTO order_items VALUES (4, 11, 106, 5);
-INSERT INTO order_items VALUES (5, 12, 103, 4);
-INSERT INTO order_items VALUES (6, 12, 105, 2);
-INSERT INTO order_items VALUES (7, 13, 107, 10);
-INSERT INTO order_items VALUES (8, 13, 108, 4);
-INSERT INTO order_items VALUES (9, 14, 101, 1);
-INSERT INTO order_items VALUES (10, 14, 102, 1);
-INSERT INTO order_items VALUES (11, 15, 105, 3);
-INSERT INTO order_items VALUES (12, 15, 106, 6);
-INSERT INTO order_items VALUES (13, 16, 104, 2);
-INSERT INTO order_items VALUES (14, 16, 103, 3);
-INSERT INTO order_items VALUES (15, 17, 108, 5);
-INSERT INTO order_items VALUES (16, 17, 101, 2);
-INSERT INTO order_items VALUES (17, 18, 102, 2);
-INSERT INTO order_items VALUES (18, 18, 107, 8);
-INSERT INTO order_items VALUES (19, 19, 105, 1);
-INSERT INTO order_items VALUES (20, 20, 106, 4);
-INSERT INTO order_items VALUES (21, 21, 104, 3);
-INSERT INTO order_items VALUES (22, 22, 103, 2);
-INSERT INTO order_items VALUES (23, 23, 101, 1);
-INSERT INTO order_items VALUES (24, 24, 102, 1);
-INSERT INTO order_items VALUES (25, 24, 108, 3);
-
-The database will then input the data above to make the queries below.
+Order Items Table: <img width="295" height="368" alt="Order Items Table" src="https://github.com/user-attachments/assets/855071d5-e188-4b74-92e5-842968d8c878" />
 
 **3.SQL Queries**
 **A.JOIN Queries**
